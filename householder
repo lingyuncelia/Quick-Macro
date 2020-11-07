@@ -1,0 +1,79 @@
+Sub celia(x, y)
+    Delay 350
+    MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 350
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\1.txt")
+Dim MyArray1
+MyArray1 = Split(Text1, "|")
+
+Text2 = Plugin.File.ReadFileEx("D:\zhusc\2.txt")
+Dim MyArray2
+MyArray2 = Split(Text2, "|")
+
+For i=32 to 37
+Call celia(759, 275)//清空户主名输入框
+Call celia(630, 275)//输入户主姓名
+SayString MyArray1(i)//户主姓名
+Call celia(814, 275)//搜索
+Call celia(564, 405)//点击目标住户
+Call celia(755, 605)//未填报，准备填写户主姓名
+Call celia(535, 468)//D1写户主姓名
+KeyPress "F5", 1
+SayString MyArray1(i)//户主姓名
+Call celia(681, 806)//下一题
+Call celia(681, 806)//下一题
+Call celia(541, 468)//公民身份证号码
+KeyPress "F5", 1
+SayString MyArray2(i)//公民身份证号码
+Call celia(681, 806)//下一题
+Call celia(681, 806)//下一题--性别
+Call celia(681, 806)//下一题--出生日期
+Call celia(796, 470)//民族
+Call celia(542, 360)//汉
+Call celia(681, 806)//下一题
+Call celia(640, 503)//本普查小区
+Call celia(681, 806)//下一题
+Call celia(641, 473)//D8本村居委会
+Call celia(681, 806)//下一题
+Call celia(640, 473)//D9离开户口登记时间
+Call celia(681, 806)//下一题
+//D11受教育程度
+
+//Call celia(544, 463)//未上过学
+//Call celia(736, 466)//学前教育
+Call celia(543, 527)//小学
+//Call celia(735, 524)//初中
+//Call celia(545, 580)//高中
+//Call celia(736, 585)//大学专科
+//Call celia(544, 643)//大学本科
+//Call celia(737, 642)//硕士研究生
+//Call celia(542, 701)//博士研究生
+
+Call celia(681, 806)//下一题
+Call celia(544, 467)//D12识字--是
+Call celia(787, 807)//审核
+Call celia(641, 571)//审核通过，确认
+Call celia(450, 166)//返回
+call zhaose(717,389,722,392,"3840E7")
+Next
+
