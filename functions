@@ -1,0 +1,32 @@
+Sub 相关地址()
+For i = 2 To 11839
+If Cells(i, 4) Like "*" & "XX街" & "*" Then Cells(i, 5) = 1
+Next
+End Sub
+
+计算某单元格含某字符的个数
+A2含5+11+14+11+33 
+=(LEN(A2)-LEN(SUBSTITUTE(A2,B2,"")))/LEN(B2)
+B2含+
+
+数数改良版:
+=(LEN(A2)-LEN(SUBSTITUTE(A2,",","")))+1
+
+一对多精确查找
+Function mylookup(myword As Range, mybook As Range, mycol As Integer)
+Dim mysht As Worksheet
+Set mysht = ActiveSheet
+maxrow = mysht.UsedRange.Rows.Count
+For i = 1 To maxrow
+If mybook.Cells(i, 1) = myword.Value Then
+myresult = myresult & "," & mybook.Cells(i, mycol).Value
+End If
+Next
+mylookup = Right(myresult, Len(myresult) - 1)
+End Function
+
+蒙与户主关系
+=ifs(f2=d2,"配偶",and(LEFT(f2,1)=LEFT(B2,1),MID(g2,7,4)-MID(C2,7,4)>50),"孙子女",and(LEFT(f2,1)=LEFT(B2,1),MID(g2,7,4)-MID(C2,7,4)>18),"子女",and(LEFT(f2,1)=LEFT(B2,1),MID(g2,7,4)-MID(c2,7,4)<-50),"祖父母",and(LEFT(f2,1)=LEFT(B2,1),MID(g2,7,4)-MID(c2,7,4)<-18),"父母",and(LEFT(f2,1)=LEFT(d2,1),MID(g2,7,4)-MID(e2,7,4)>50),"孙子女",and(LEFT(f2,1)=LEFT(d2,1),MID(g2,7,4)-MID(e2,7,4)>18),"子女",and(LEFT(f2,1)=LEFT(d2,1),MID(g2,7,4)-MID(e2,7,4)<-50),"祖父母",and(LEFT(f2,1)=LEFT(d2,1),MID(g2,7,4)-MID(e2,7,4)<-18),"父母",LEFT(f2,1)=LEFT(B2,1),"兄弟姐妹")
+
+
+
