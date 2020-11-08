@@ -1,0 +1,79 @@
+Sub celia(x, y)
+    Delay 350
+    MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 350
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\1.txt")
+Dim MyArray1
+MyArray1 = Split(Text1, "|")
+
+Text2 = Plugin.File.ReadFileEx("D:\zhusc\2.txt")
+Dim MyArray2
+MyArray2 = Split(Text2, "|")
+
+For i=20 to 53
+Call celia(759, 275)//清空户主名输入框
+Call celia(605, 271)//输入户主姓名
+SayString MyArray1(i)
+Call celia(814, 275)//搜索
+Call celia(564, 427)//点击目标住户
+Call celia(739, 451)//未填报
+Call celia(542, 425)//家庭户
+Call celia(681, 806)//下一题
+KeyPress "F5", 1
+Delay 500
+Call celia(725, 550)//H2_1其他数值
+SayString MyArray2(i)
+Delay 500
+KeyPress "Enter", 1
+Delay 500
+Call celia(498, 756)//H2_2点击0
+Call celia(681, 806)//下一题
+Call celia(498, 460)//H3_1点击0
+Call celia(498, 671)//H3_2点击0
+Call celia(681, 806)//下一题
+Call celia(498, 460)//H4_1点击0
+Call celia(498, 671)//H4_2点击0
+Call celia(681, 806)//下一题
+Call celia(546, 425)//H5普通住宅
+Call celia(545, 433)//H6
+Call celia(681, 806)//下一题
+Call celia(546, 424)//输入平方数
+KeyPress "F5", 1
+Delay 500
+SayString "87"
+Delay 500
+KeyPress "Enter", 1
+Delay 500
+Call celia(681, 806)//下一题
+Call celia(545, 433)//H7
+KeyPress "F5", 1
+Delay 500
+SayString "3"
+Delay 500
+KeyPress "Enter", 1
+Delay 500
+Call celia(785, 806)//审核
+Call celia(641, 571)//审核通过，确认
+Call celia(450, 166)//审核通过，确认
+call zhaose(717,389,722,392,"3840E7")
+Next
