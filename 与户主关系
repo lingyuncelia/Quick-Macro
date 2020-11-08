@@ -1,0 +1,153 @@
+Sub celia(x, y)
+    Delay 350
+    MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 350
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\1.txt")
+Dim MyArray1//户主姓名
+MyArray1 = Split(Text1, "|")
+
+Text2 = Plugin.File.ReadFileEx("D:\zhusc\2.txt")
+Dim MyArray2//关系户姓名
+MyArray2 = Split(Text2, "|")
+
+Text3 = Plugin.File.ReadFileEx("D:\zhusc\3.txt")
+Dim MyArray3//公民身份证号码
+MyArray3 = Split(Text3, "|")
+
+Text4 = Plugin.File.ReadFileEx("D:\zhusc\4.txt")
+Dim MyArray4//D11受教育程度
+MyArray4 = Split(Text4, "|")
+
+Text5 = Plugin.File.ReadFileEx("D:\zhusc\5.txt")
+Dim MyArray5//户籍地
+MyArray5 = Split(Text5, "|")
+
+Text6 = Plugin.File.ReadFileEx("D:\zhusc\6.txt")
+Dim MyArray6//与户主关系
+MyArray6 = Split(Text6, "|")
+
+
+For i=53 to 80
+Call celia(759, 275)//清空户主名输入框
+Call celia(630, 275)//输入户主姓名
+KeyPress "F5", 1
+SayString MyArray1(i)//户主姓名
+Call celia(814, 275)//搜索
+Call zhaose(681,387,693,399,"3840E7")//判断是否有此人
+Call celia(564, 405)//点击搜索所得住户
+
+Call celia(753, 670)//2未填报
+
+Call celia(535, 468)//D1写2姓名
+KeyPress "F5", 1
+SayString MyArray2(i)//2姓名
+Call celia(681, 806)//下一题
+
+//D2与户主关系--其他
+Delay 500
+If MyArray6(i) = "配偶" Then 
+    Call celia(544, 463)
+ElseIf MyArray6(i) = "子女" Then
+    Call celia(736, 466)
+ElseIf MyArray6(i) = "父母" Then
+    Call celia(543, 527)
+ElseIf MyArray6(i) = "岳父母或公婆" Then
+    Call celia(735, 524)
+ElseIf MyArray6(i) = "祖父母" Then
+    Call celia(545, 580)
+ElseIf MyArray6(i) = "媳婿" Then
+    Call celia(736, 585)
+ElseIf MyArray6(i) = "孙子女" Then
+    Call celia(544, 643)
+ElseIf MyArray6(i) = "兄弟姐妹" Then
+    Call celia(737, 642)
+ElseIf MyArray6(i) = "其他" Then
+    Call celia(542, 701)             
+End If
+
+Call celia(681, 806)//下一题
+Call celia(541, 468)//公民身份证号码
+KeyPress "F5", 1
+SayString MyArray3(i)//公民身份证号码
+Call celia(681, 806)//下一题
+Call celia(681, 806)//下一题--性别
+Call celia(681, 806)//下一题--出生日期
+Call celia(796, 470)//民族
+Call celia(542, 360)//汉
+Call celia(681, 806)//下一题
+Call celia(640, 503)//本普查小区
+Call celia(681, 806)//下一题
+
+If MyArray5(i) = "大观" Then 
+    Call celia(640, 475)//D8户口登记地--本村
+    Call celia(681, 806)//下一题
+    Call celia(640, 475)//D9离开户口登记地时间--无离开
+    Call celia(681, 806)//下一题    
+ElseIf MyArray5(i) = "祖庙街道" Then
+    Call celia(635, 564)//D8户口登记地--本乡
+    Call celia(681, 806)//下一题
+    Call celia(760, 731)//D9不满半年
+    Call celia(681, 806)//下一题
+    Call celia(550, 530)//D10随同离开/投亲靠友
+    Call celia(681, 806)//下一题    
+ElseIf MyArray5(i) = "张槎街道" or MyArray5(i) = "石湾街道" or MyArray5(i) = "南庄镇" Then
+    Call celia(635, 653)//D8户口登记地--本县
+    Call celia(681, 806)//下一题
+    Call celia(760, 731)//D9不满半年
+    Call celia(681, 806)//下一题
+    Call celia(550, 530)//D10随同离开/投亲靠友
+    Call celia(681, 806)//下一题    
+Else
+    Call celia(635, 744)//D8户口登记地--其他县（市、区、镇）
+    MessageBox "wait"
+    Delay 10000
+End If
+
+//D11受教育程度
+If MyArray4(i) = "未上过学" Then 
+	Call celia(544, 463)//未上过学
+ElseIf MyArray4(i) = "学前教育" Then
+    Call celia(736, 466)//学前教育
+ElseIf MyArray4(i) = "小学" Then
+    Call celia(543, 527)//小学
+ElseIf MyArray4(i) = "初中" Then
+    Call celia(735, 524)//初中
+ElseIf MyArray4(i) = "高中" Then
+    Call celia(545, 580)//高中
+ElseIf MyArray4(i) = "大学专科" Then
+    Call celia(736, 585)//大学专科
+ElseIf MyArray4(i) = "大学本科" Then
+    Call celia(544, 643)//大学本科
+ElseIf MyArray4(i) = "硕士研究生" Then
+    Call celia(737, 642)//硕士研究生
+ElseIf MyArray4(i) = "未上过学" Then
+    Call celia(542, 701)//博士研究生                 
+End If
+
+Call celia(681, 806)//下一题
+Call celia(544, 467)//D12识字--是
+Call celia(787, 807)//审核
+Call celia(641, 571)//审核通过，确认
+Call celia(450, 166)//返回
+call zhaose(717,389,722,392,"3840E7")
+Next
