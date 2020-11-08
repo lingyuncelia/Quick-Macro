@@ -1,0 +1,41 @@
+Sub celia(x, y)
+     MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 500
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\3.txt")
+
+Dim MyArray1
+MyArray1 = Split(Text1, "|")
+
+//新增住房单元
+//住房单元地址
+//确认新增
+For i=0 to 59
+Call celia(742, 815)//新增住房单元
+Delay 500
+Call celia(577, 563)//住房单元地址
+SayString MyArray1(i)
+Delay 500
+Call celia(721, 669)//确认新增
+Delay 500
+Next
+
+
