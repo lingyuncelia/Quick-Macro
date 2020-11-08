@@ -110,7 +110,7 @@ ElseIf MyArray5(i) = "祖庙街道" Then
     Call celia(681, 806)//下一题
     Call celia(550, 530)//D10随同离开/投亲靠友
     Call celia(681, 806)//下一题    
-ElseIf MyArray5(i) = "张槎街道" or MyArray5(i) = "石湾街道" or MyArray5(i) = "南庄镇" Then
+ElseIf MyArray5(i) = "张槎街道" or MyArray5(i) = "石湾镇街道" or MyArray5(i) = "南庄镇" Then
     Call celia(635, 653)//D8户口登记地--本县
     Call celia(681, 806)//下一题
     Call celia(760, 731)//D9不满半年
