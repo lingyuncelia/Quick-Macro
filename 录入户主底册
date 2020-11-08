@@ -1,0 +1,109 @@
+Sub celia(x, y)
+    Delay 500
+    MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 500
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\1.txt")//地址
+Text2 = Plugin.File.ReadFileEx("D:\zhusc\2.txt")//住户姓名
+Text3 = Plugin.File.ReadFileEx("D:\zhusc\3.txt")//M5
+Text4 = Plugin.File.ReadFileEx("D:\zhusc\4.txt")//M6
+Text5 = Plugin.File.ReadFileEx("D:\zhusc\5.txt")//M7
+Text6 = Plugin.File.ReadFileEx("D:\zhusc\6.txt")//联系电话
+Dim MyArray1
+MyArray1 = Split(Text1, "|")
+Dim MyArray2
+MyArray2 = Split(Text2, "|")
+Dim MyArray3
+MyArray3 = Split(Text3, "|")
+Dim MyArray4
+MyArray4 = Split(Text4, "|")
+Dim MyArray5
+MyArray5 = Split(Text5, "|")
+Dim MyArray6
+MyArray6 = Split(Text6, "|")
+
+Sub huadong(a)
+For a
+	MouseWheel - 1 
+    Delay 500
+Next   
+End Sub
+
+For i = 44 To 47
+Call celia(1193, 262)//清空搜索框内容
+Call celia(1060, 262)//输入
+SayString MyArray1(i)
+
+Call celia(1245, 260)//搜索
+Delay 1500
+call celia(1231,403)//编辑
+call celia(1072,541)//录入户主姓名底册
+call celia(1232,263)//户主姓名底册类型
+Call celia(1075, 542)//住户
+KeyPress "F5", 1
+//call celia(1075,601)//空户
+Call huadong(4)
+Call celia(967, 528)//M4户主姓名
+Call celia(967, 528)//M4户主姓名
+SayString MyArray2(i)
+
+Call huadong(5)
+Call celia(1166, 302)//M5
+SayString MyArray3(i)
+
+If MyArray4(i)=0 Then
+Call celia(932, 512)//M6--  0
+Else 
+Call celia(1165, 555)//M6
+SayString MyArray4(i)
+End If
+
+Call huadong(5)
+
+if MyArray5(i)=0 then
+Call celia(932, 250)//M7--  0
+else
+Call celia(1166, 314)//M7
+SayString MyArray5(i)
+End If
+
+call celia(935,477)//M8
+Call huadong(5)
+call celia(935,235)//M9
+call celia(935,495)//M10
+Call huadong(5)
+call celia(935,245)//M11
+call celia(935,500)//M12
+Call huadong(5)
+call celia(935,245)//M13
+call celia(935,475)//M14
+Call huadong(5)
+Call celia(1000, 205)//联系方式
+SayString MyArray6(i)
+
+call celia(1233,580)//是否自主填报
+call celia(1075,607)//普查员登记
+call celia(1075,692)//审核
+call celia(1162,450)//一键上报
+Call celia(1075, 450)//确认
+Call celia(882, 38)//确认
+	
+Next
