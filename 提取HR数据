@@ -1,0 +1,67 @@
+Sub celia(x, y)
+    Delay 350
+    MoveTo x, y
+    Delay 500
+    LeftClick 1
+    Delay 350
+End Sub
+Sub zhaose(a, b, c, d, e)
+    Do  //循环找色，找到为止
+        FindColor a,b,c,d,e,intX,intY
+        If intX > 0 And intY > 0 Then 
+            Exit Do
+        End If
+    Loop
+End Sub
+Sub qingkong()
+    KeyDown 17, 1    //ctrl+a--全选
+    KeyPress 65, 1
+    KeyUp 17, 1
+    Delay 500
+    KeyPress "Delete", 1
+    Delay 500
+End Sub
+Sub huadong(a,b,c,d,i)
+MoveTo a, b //鼠标滑动，复制粘贴
+Delay 500
+LeftDown 1
+Delay 500
+MoveTo c, d
+Delay 500
+LeftUp 1
+Delay 500
+KeyDown 17, 1  //copy,ctrl+c
+KeyPress 67, 1
+KeyUp 17, 1
+Delay 500
+str = Plugin.Sys.GetCLB()
+Call Plugin.File.WriteFileEx("D:\zhusc\2.txt",i&":"&str)
+str = ""
+Call Plugin.Sys.SetCLB(str)
+End Sub
+
+Text1 = Plugin.File.ReadFileEx("D:\zhusc\1.txt")
+Dim MyArray1
+MyArray1 = Split(Text1, "|")
+
+Text2 = Plugin.File.ReadFileEx("D:\zhusc\2.txt")
+Dim MyArray2
+MyArray2 = Split(Text2, "|")
+
+For i = 0 To 3
+Call celia(390, 280)//准备输入证件号码
+SayString MyArray1(i)//证件号码
+KeyPress "Enter", 1
+call zhaose(350,307,404,318,"333333")//判断是否出现搜索结果
+Call celia(443, 342)//选中所得
+Call zhaose(479, 277, 515, 289, "EEEEEE")//判断是否出结果
+Call celia(1121, 152)//该人一生档案
+Call zhaose(642,248,687,267,"F79358")//是否出现此人档案
+Call huadong(774, 417, 930, 432,i)//就业单位
+Call celia(927, 260)//关闭该人一生档案
+Call celia(927, 272)//关闭该人一生档案
+Call celia(1226, 152)//退出此人
+Call zhaose(319, 274, 326, 281, "5F5FFF")//判断是否切换至原界面	
+Next
+
+
