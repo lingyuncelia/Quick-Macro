@@ -1,0 +1,6 @@
+str1= "432522195410014609"
+TracePrint str1
+str2 = mid(str1, 7, 4)
+If CInt(str2) < 2000 Then 
+	TracePrint "hello world"
+End If
