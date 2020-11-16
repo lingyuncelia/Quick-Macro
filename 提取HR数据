@@ -52,7 +52,15 @@ For i = 0 To 3
 Call celia(390, 280)//准备输入证件号码
 SayString MyArray1(i)//证件号码
 KeyPress "Enter", 1
-call zhaose(350,307,404,318,"333333")//判断是否出现搜索结果
+
+Delay 1000
+c = GetPixelColor(627, 362)
+If c="F79358"  Then 
+Call celia(914, 479)//选是，系统无此人
+Call celia(555, 279)//清除身份证号码
+End If
+
+Call zhaose(350,307,404,318,"333333")//判断是否出现搜索结果
 Call celia(443, 342)//选中所得
 Call zhaose(479, 277, 515, 289, "EEEEEE")//判断是否出结果
 Call celia(1121, 152)//该人一生档案
@@ -63,5 +71,6 @@ Call celia(927, 272)//关闭该人一生档案
 Call celia(1226, 152)//退出此人
 Call zhaose(319, 274, 326, 281, "5F5FFF")//判断是否切换至原界面	
 Next
+
 
 
